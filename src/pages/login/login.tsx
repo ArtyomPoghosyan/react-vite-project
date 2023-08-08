@@ -1,10 +1,12 @@
-import { BarChart } from "@/components/charts"
+import { BarChart } from "@/components";
 
+const Login = () => {
 
-export const Login = () => {
     return (
         <div>
-            <BarChart/>
+            <BarChart />
         </div>
-    )
-}
+    );
+};
+
+export default Login;

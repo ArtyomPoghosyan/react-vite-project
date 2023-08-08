@@ -1,4 +1,4 @@
-import { Button, Checkbox, FormControl, FormLabel, Input, VStack } from '@chakra-ui/react';
+import { Button, Checkbox, FormControl, FormLabel, IconButton, Input, VStack, useColorMode } from '@chakra-ui/react';
 import { Outlet } from 'react-router-dom';
 
 import { useFormik } from "formik";
@@ -16,6 +16,9 @@ interface err {
 }
 
 const Main = () => {
+
+    const { colorMode, toggleColorMode } = useColorMode();
+
 
     const formik = useFormik({
         initialValues: {
@@ -36,21 +39,27 @@ const Main = () => {
             if (!values.password) {
                 errors.password = 'Password is required';
             }
-            else if (values.password.toString().length < 3){
-                errors.password= "small than 3 "
+            else if (values.password.toString().length < 3) {
+                errors.password = "small than 3 "
             }
 
             return errors;
         },
-        
+
         onSubmit: (values) => {
             console.log(values);
-            
+
         },
     });
 
     return (
         <>
+            <IconButton
+                aria-label="Toggle dark mode"
+                icon={colorMode === 'light' ? <Button>cerek</Button> : <Button>gisher</Button>}
+                onClick={toggleColorMode}
+            />
+
             <form onSubmit={formik.handleSubmit}>
                 <VStack spacing={4} align="flex-start">
                     <FormControl
@@ -64,7 +73,7 @@ const Main = () => {
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
                             value={formik.values.email}
-                            
+
                         />
                     </FormControl>
                     {formik.errors.email && formik.touched.email && (
@@ -72,7 +81,7 @@ const Main = () => {
                     )}
                     <FormControl
                     // isInvalid={formik.errors.password && formik.touched.password}
-                    
+
                     >
                         <FormLabel htmlFor="password">Password</FormLabel>
                         <Input
@@ -83,7 +92,7 @@ const Main = () => {
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
                             value={formik.values.password}
-                            
+
                         />
                     </FormControl>
                     {formik.errors.password && formik.touched.password && (
@@ -98,12 +107,11 @@ const Main = () => {
                     >
                         Remember me?
                     </Checkbox>
-                    <Button isDisabled={(!formik.values.email && !formik.values.password)?true:false} type="submit" colorScheme="purple" width="full">
+                    <Button isDisabled={(!formik.values.email && !formik.values.password) ? true : false} type="submit" colorScheme="purple" width="full">
                         Login
                     </Button>
                 </VStack>
             </form>
-            <div>Main</div>
             <div>
                 <Outlet />
             </div>

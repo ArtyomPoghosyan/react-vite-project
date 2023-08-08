@@ -1,4 +1,6 @@
-import { Constact, Login, } from "@/pages"
+
+import Constact from "@/pages/contact/contact"
+import Login from "@/pages/login/login"
 import Main from "@/pages/main/main"
 import { Route, Routes } from "react-router-dom"
 

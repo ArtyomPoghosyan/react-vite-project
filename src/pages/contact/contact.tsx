@@ -1,11 +1,9 @@
-import { DoughnutChart } from "@/components/charts"
+import { DoughnutChart } from "@/components";
 
-export const Constact = () => {
-    return (
-        <div>
+const Constact = () => {
+  return (
+        <DoughnutChart />
+  );
+};
 
-            <DoughnutChart />
-
-        </div>
-    )
-}
+export default Constact;
